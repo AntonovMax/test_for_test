@@ -1,26 +1,72 @@
-import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'
 
-function Admin(props) {
+import style from './Admin.module.css'
 
-  const [users, setUsers] = useState()
+function Admin({ users, setUsers }) {
 
-  useEffect( () => {
-    fetch('http://localhost:5000/admin')
-    .then(data => data.json())
-    .then(data => setUsers(data))
-    .catch(err => err)
-  }, [])
+  function handleDeletUser(phone) {
+    console.log();
+    fetch('http://localhost:5000/admin', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        phone: phone
+      })
+    })
+      .then(data => data.json())
+      .then((responseServer) => {
+        if (responseServer.deleted) {
+          setUsers(users.filter(user => user.phone !== phone))
+        } else {
+          console.log('some problem to server, try again');
+        }
+      })
+      .catch(err => err)
+  }
 
-
-  console.log(users);
   return (
-    <div>
-        {
-          users ? 
-          users.map(user => <p>{user.phone}</p>)
+    <div className={style.wrapper}>
+      {
+        users ?
+          users.map((user) => {
+            return (
+              <div className={style.main_container} key={user.id}>
+                <Link to={`/user/${user.id}`} className={style.card_link} >
+                  <div className='card' style={{ width: '18rem' }} >
+                    <div className="card-body">
+                      <h5 className="card-title">Phone: {user.phone}</h5>
+                      <p className="card-text">Email: {user.email}</p>
+                      <p className="card-text">Added at: {user.createdAt.split('T')[0]}</p>
+
+                    </div>
+                  </div>
+                </Link>
+                <div className={style.basket_block}>
+                  <svg onClick={(event) => {
+                    event.stopPropagation()
+                    handleDeletUser(user.phone)
+                  }}
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    className={`bi bi-bucket-fill ${style.basket}`}
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fillRule="evenodd" d="M8 1.5A4.5 4.5 0 0 0 3.5 6h-1a5.5 5.5 0 1 1 11 0h-1A4.5 4.5 0 0 0 8 1.5z" />
+                    <path fillRule="evenodd" d="M1.61 5.687A.5.5 0 0 1 2 5.5h12a.5.5 0 0 1 .488.608l-1.826 8.217a1.5 1.5 0 0 1-1.464 1.175H4.802a1.5 1.5 0 0 1-1.464-1.175L1.512 6.108a.5.5 0 0 1 .098-.42z" />
+                  </svg>
+                </div>
+
+              </div>
+
+
+            )
+          })
           :
           null
-        }
+      }
     </div>
   );
 }

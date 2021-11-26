@@ -4,8 +4,16 @@ const { User } = require('../db/models')
 router.route('/')
   .get(async (req, res) => {
       const response = await User.findAll({raw: true})
-      console.log(response);
       res.json(response)
+  })
+  .delete(async (req, res) => {
+    const user = await User.findOne({where: { phone: req.body.phone }})
+    if (user) {
+       await user.destroy()
+       res.json({deleted: true})
+    } else {
+      res.json({deleted: false})
+    }
   })
 
 
