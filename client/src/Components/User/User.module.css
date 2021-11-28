@@ -3,6 +3,10 @@
   font-weight: 700;
 }
 
+.input_color:focus {
+  color: rgb(112, 63, 168);
+}
+
 .wrapper {
   color: rgb(255, 232, 131);
 }
