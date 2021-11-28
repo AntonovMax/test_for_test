@@ -1,20 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
 import style from './User.module.css'
 
 function User({ users, setUsers }) {
 
-  const { id } = useParams()
-  const [userInfo] = users.filter(el => el.id == id)
-  const [user, setUser] = useState(userInfo)
+  const { id } = useParams() 
+  const [userInfo] = users.filter(el => el.id == id) // вариант поиска данных о пользователе через клиентское состояние
+  const [user] = useState(userInfo)
 
-  function handleEditUser(info) {
+  // Вариант поиска данных пользователя через базу по номеру телефона 
+
+  // useEffect(async () => { 
+  //   const response = await fetch('http://localhost:5000/user', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type' : 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       phone: user.phone
+  //     })
+  //   })
+  //   const checkInDB = await response.json()
+
+  //   checkInDB ? console.log('action') : console.log('disaction');
+  // }, [])
+
+  async function handleEditUser(info) {
+
+    console.log('hi');
 
     if (info.agree.checked) {
       const { phone, email, birthday } = info
 
-      fetch('http://localhost:5000/user', {
+      const response = await fetch('http://localhost:5000/user', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -26,8 +45,14 @@ function User({ users, setUsers }) {
           birthday: birthday.value
         })
       })
+
+      const updateInBase = await response.json()
+
+      updateInBase ? window.location.replace('/') : alert('Some problem on server, try again...')
+      
     } else {
-      console.log('hi');
+      const messegeCheckBox = document.getElementById('check_label')
+      messegeCheckBox.style.color = '#fc83b0f8'
     }
 
 
@@ -53,7 +78,7 @@ function User({ users, setUsers }) {
         </div>
         <div className="mb-3 form-check">
           <input type="checkbox" name='agree' className="form-check-input" id="exampleCheck1" />
-          <label className="form-check-label" htmlFor="exampleCheck1">Сonsent to the processing of personal data</label>
+          <label id='check_label' className="form-check-label" htmlFor="exampleCheck1">Сonsent to the processing of personal data</label>
         </div>
         <button className={`btn btn-primary ${style.button}`} type="submit" >SUBMIT</button>
       </form>

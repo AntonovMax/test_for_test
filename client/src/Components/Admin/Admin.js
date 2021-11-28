@@ -34,12 +34,17 @@ function Admin({ users, setUsers }) {
             return (
               <div className={style.main_container} key={user.id}>
                 <Link to={`/user/${user.id}`} className={style.card_link} >
-                  <div className='card' style={{ width: '18rem' }} >
+                  <div className='card' style={{ width: '23rem' }} >
                     <div className="card-body">
-                      <h5 className="card-title">PHONE: {user.phone}</h5>
-                      <h5 className="card-title">EMAIL: {user.email}</h5>
-                      <h5 className="card-title">ADDED AT: {user.createdAt.split('T')[0]}</h5>
-
+                      <h5 className="card-title">
+                        <span className={style.span}>PHONE:</span> {user.phone}
+                      </h5>
+                      <h5 className="card-title">
+                        <span className={style.span}>EMAIL:</span> {user.email}
+                      </h5>
+                      <h5 className="card-title">
+                        <span className={style.span}>ADDED AT:</span> {user.createdAt.split('T')[0]}
+                      </h5>
                     </div>
                   </div>
                 </Link>

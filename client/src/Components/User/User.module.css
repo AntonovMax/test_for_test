@@ -12,3 +12,7 @@
   border: 1px solid rgb(85, 40, 69);
   color: rgb(243, 219, 114);
 }
+
+#check_label {
+  transition: color 1s;
+}

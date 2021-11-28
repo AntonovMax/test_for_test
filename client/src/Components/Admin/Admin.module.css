@@ -13,12 +13,16 @@
 
 .card_link {
   text-decoration: none;
-  color: rgb(196, 27, 131);
+  color: rgb(112, 63, 168);
   transition: color 1s;
 }
 
 .card_link:hover {
-  color:rgb(28, 96, 160);
+  color:rgb(196, 27, 131);
+}
+
+.span {
+  font-weight: 600;
 }
 
 .margin_bottom {
@@ -29,6 +33,7 @@
   border: 1px solid rgb(218, 208, 208);
   padding: 48px 10px;
   background-color: rgb(255, 253, 250);
+  border-radius: 0px 5px 5px 0px;
 }
 
 .fill {
