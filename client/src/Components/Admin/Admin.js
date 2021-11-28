@@ -36,9 +36,9 @@ function Admin({ users, setUsers }) {
                 <Link to={`/user/${user.id}`} className={style.card_link} >
                   <div className='card' style={{ width: '18rem' }} >
                     <div className="card-body">
-                      <h5 className="card-title">Phone: {user.phone}</h5>
-                      <p className="card-text">Email: {user.email}</p>
-                      <p className="card-text">Added at: {user.createdAt.split('T')[0]}</p>
+                      <h5 className="card-title">PHONE: {user.phone}</h5>
+                      <p className="card-text">EMAIL: {user.email}</p>
+                      <p className="card-text">ADDED AT: {user.createdAt.split('T')[0]}</p>
 
                     </div>
                   </div>
@@ -51,11 +51,11 @@ function Admin({ users, setUsers }) {
                     width="1em"
                     height="1em"
                     viewBox="0 0 16 16"
-                    className={`bi bi-bucket-fill ${style.basket}`}
-                    fill="currentColor"
+                    className={`bi bi-bucket-fill ${style.basket} ${style.fill}`}
+                    fill="red"
                     xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" d="M8 1.5A4.5 4.5 0 0 0 3.5 6h-1a5.5 5.5 0 1 1 11 0h-1A4.5 4.5 0 0 0 8 1.5z" />
-                    <path fillRule="evenodd" d="M1.61 5.687A.5.5 0 0 1 2 5.5h12a.5.5 0 0 1 .488.608l-1.826 8.217a1.5 1.5 0 0 1-1.464 1.175H4.802a1.5 1.5 0 0 1-1.464-1.175L1.512 6.108a.5.5 0 0 1 .098-.42z" />
+                    <path className={style.fill} d="M8 1.5A4.5 4.5 0 0 0 3.5 6h-1a5.5 5.5 0 1 1 11 0h-1A4.5 4.5 0 0 0 8 1.5z" />
+                    <path className={style.fill} d="M1.61 5.687A.5.5 0 0 1 2 5.5h12a.5.5 0 0 1 .488.608l-1.826 8.217a1.5 1.5 0 0 1-1.464 1.175H4.802a1.5 1.5 0 0 1-1.464-1.175L1.512 6.108a.5.5 0 0 1 .098-.42z" />
                   </svg>
                 </div>
 

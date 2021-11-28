@@ -1,3 +1,14 @@
+.input_color {
+  color: rgb(112, 63, 168);
+  font-weight: 700;
+}
+
 .wrapper {
-  padding: 100px;
+  color: rgb(255, 232, 131);
+}
+
+.button {
+  background: rgb(82, 36, 126);
+  border: 1px solid rgb(85, 40, 69);
+  color: rgb(243, 219, 114);
 }

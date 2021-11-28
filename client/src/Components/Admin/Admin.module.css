@@ -13,7 +13,12 @@
 
 .card_link {
   text-decoration: none;
-  color: black;
+  color: rgb(196, 27, 131);
+  transition: color 1s;
+}
+
+.card_link:hover {
+  color:rgb(28, 96, 160);
 }
 
 .margin_bottom {
@@ -22,7 +27,12 @@
 
 .basket_block {
   border: 1px solid rgb(218, 208, 208);
-  padding: 40px 10px;
+  padding: 48px 10px;
+  background-color: rgb(255, 253, 250);
+}
+
+.fill {
+  fill:rgb(28, 96, 160)
 }
 
 .basket:hover {
