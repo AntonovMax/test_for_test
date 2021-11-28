@@ -37,8 +37,8 @@ function Admin({ users, setUsers }) {
                   <div className='card' style={{ width: '18rem' }} >
                     <div className="card-body">
                       <h5 className="card-title">PHONE: {user.phone}</h5>
-                      <p className="card-text">EMAIL: {user.email}</p>
-                      <p className="card-text">ADDED AT: {user.createdAt.split('T')[0]}</p>
+                      <h5 className="card-title">EMAIL: {user.email}</h5>
+                      <h5 className="card-title">ADDED AT: {user.createdAt.split('T')[0]}</h5>
 
                     </div>
                   </div>
